@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Corona Virus Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<div class="container">
+    <h1>Corona Virus Tracker Application</h1>
+    <p>This application lists the total number of cases reported for today across the globe </p>
+
+
+    <div class="alert alert-danger" role="alert">
+        <div class="jumbotron">
+            <p class="lead">Total new cases reported in the world today</p>
+            <h1 class="display-4" th:text= "'World'+'  ->  '+ ${totalReportedCases}"></h1>
+
+
+        </div>
+    </div>
+
+    <div class="alert alert-danger" role="alert">
+        <div class="jumbotron">
+            <p class="lead">Total new cases reported in India today</p>
+            <tr th:each="locationStat : ${Country}">
+                <h1 class="display-4" th:text="${locationStat.country}+'   ->  '+${locationStat.lastCount}"></h1>
+            </tr>
+
+        </div>
+    </div>
+
+
+    <div class="alert alert-danger" role="alert">
+        <div class="jumbotron">
+
+            <form class="form-inline md-form mr-auto mb-4" action="#" th:action="@{/country}" th:object="${country}"
+                  method="post">
+                <h1>
+                    To find the latest reported cases for a specific country :
+                </h1>
+                <h5><input class="form-control mr-sm-2" type="text" th:field="*{country}" placeholder="Country"></h5>
+
+                <h5 ><input type="submit" value="Submit"/></h5>
+            </form>
+
+        </div>
+    </div>
+
+    <div style="height:1400px;overflow:auto;">
+
+        <div class="alert alert-danger" role="alert">
+            <div class="table-responsive">
+                <table class="table .table-hover">
+                    <table class="table .table-bordered">
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">State</th>
+                                <th scope="col">Country</th>
+                                <th scope="col">Total Reported Case for Today</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="locationStat : ${locationStats}">
+                                <td th:text="${locationStat.state}"></td>
+                                <td th:text="${locationStat.country}"></td>
+                                <td th:text="${locationStat.lastCount}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </table>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

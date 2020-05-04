@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<div class="alert alert-danger" role="alert">
+    <div class="jumbotron">
+        <h1>Total number of new cases reported today </h1>
+
+        <tr th:each="locationStat : ${byCountry}">
+            <h1 class="display-4" th:text="${locationStat.country} +'  ->  ' +${locationStat.lastCount}"></h1>
+
+        </tr>
+
+        <a href="/" class="btn btn-primary stretched-link">Search another country</a>
+
+    </div>
+</div>
+</body>
+</html>
